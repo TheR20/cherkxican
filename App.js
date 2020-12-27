@@ -3,6 +3,7 @@ import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import gifmoviendose from './src/gifmoviendose';
+import embrion from './src/embrion';
 
 function HomeScreen({ navigation }) {
   return (
@@ -11,6 +12,10 @@ function HomeScreen({ navigation }) {
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Nuevo')}
+      />
+      <Button
+        title="Go to Pansita"
+        onPress={() => navigation.navigate('Pansita')}
       />
     </View>
   );
@@ -43,6 +48,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Nuevo" component={gifmoviendose} />
+          <Stack.Screen name="Pansita" component={embrion} />
       </Stack.Navigator>
     </NavigationContainer>
   );

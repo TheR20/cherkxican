@@ -34,7 +34,7 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import SQLite from 'react-native-sqlite-storage';
 import {   Button, Text ,Input, Block,Switch } from 'galio-framework'
 
 
@@ -82,6 +82,14 @@ export default class App extends Component {
       TextoInput: '',
       selectedValue : '',
     }
+    db = SQLite.openDatabase(
+    {
+
+      name: 'Users.db', //Name of you table
+      createFromLocation : "~user.db", //Name of your DB
+    },
+
+  );
 
     }
 
@@ -95,6 +103,26 @@ export default class App extends Component {
                this.setState({ selectedValue: text })
             }
 
+
+            guardaBaseDeDatos = () => {
+                        var cristo = '"'+this.state.selectedValue+'"';
+                      //  var date = new Date().getDate();
+
+
+              var consulta = 'UPDATE Users SET Dias=1,Nombre='+ cristo +' WHERE ID=1';
+                      db.transaction(tx => {
+                        tx.executeSql(consulta, [], (tx, results) => {
+
+                            // sql query to get all table data and storing it in 'results' variable
+                               //setting the state(userlist) with users array which has all the table data
+                        });
+                      });
+                      // alert
+
+                      this.props.navigation.navigate('Pansita')
+                          // console.log(cristo);
+
+                    }
 
 
 
