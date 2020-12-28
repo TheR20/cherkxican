@@ -109,7 +109,7 @@ export default class App extends Component {
                       //  var date = new Date().getDate();
 
 
-              var consulta = 'UPDATE Users SET Dias=1,Nombre='+ cristo +' WHERE ID=1';
+              var consulta = 'UPDATE Users SET Dias=1,Nombre='+ cristo +',Hoy="27/12/2020" WHERE ID=1';
                       db.transaction(tx => {
                         tx.executeSql(consulta, [], (tx, results) => {
 

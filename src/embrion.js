@@ -34,6 +34,7 @@ export default class App extends React.Component {
       userList:[],
       cola:"",
       Dias:0,
+      Hoy: "",
     }
     db = SQLite.openDatabase(
       {
@@ -57,7 +58,7 @@ export default class App extends React.Component {
                          //looping through each row in the table and storing it as object in the 'users' array
           }
 
-           this.setState({ userList:users, Dias: results.rows.item(0).Dias});
+           this.setState({ userList:users, Dias: results.rows.item(0).Dias, Hoy:results.rows.item(0).Hoy});
         //   console.log(users);        //setting the state(userlist) with users array which has all the table data
         });
       });
@@ -69,10 +70,39 @@ export default class App extends React.Component {
     }
 
 
+Actualizar = () => {
+  var aumentoDias = 0;
+  aumentoDias = this.state.Dias+1;
+  var date = new Date().getDate();
+              var month = new Date().getMonth() + 1;
+              var year = new Date().getFullYear();
+                var fechafinal = ''+date+'/'+month+'/'+year+'';
+                  console.log(this.state.Hoy);
+                  console.log(fechafinal);
+if(this.state.Hoy == fechafinal)
+  console.log("No es necesario");
+  else{
+
+    console.log(aumentoDias);
+    var consulta = 'UPDATE Users SET Dias='+aumentoDias+',Hoy="'+fechafinal+'" WHERE ID=1';
+            db.transaction(tx => {
+              tx.executeSql(consulta, [], (tx, results) => {
+
+                  // sql query to get all table data and storing it in 'results' variable
+                     //setting the state(userlist) with users array which has all the table data
+              });
+            });
+            // alert
+        this.success.bind(this)
+        console.log("Actualizado");
+  }
+console.log(aumentoDias);
+}
+
 
 
   render() {
-
+this.Actualizar();
   var numDia= this.state.Dias;
 
   switch(this.state.Dias){
@@ -86,7 +116,6 @@ var image = images[1];
 
 
 
-console.log(numDia);
 
     return (
 
@@ -107,6 +136,7 @@ console.log(numDia);
 
                  <Text style={{  fontFamily: 'Roboto', fontSize: 18,color:"#D24136" , fontWeight: 'bold',  textAlign: 'center'}}>Dias Existiendo: {item.Dias}</Text>
                   <Text style={{  fontFamily: 'Roboto', fontSize: 15,textAlign: 'center' }} >Nombre: {item.Nombre}</Text>
+                    <Text style={{  fontFamily: 'Roboto', fontSize: 15,textAlign: 'center' }} >Creado el: {item.Hoy}</Text>
 
 
 
