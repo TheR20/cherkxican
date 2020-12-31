@@ -32,11 +32,11 @@ const images = [
     'https://media3.giphy.com/media/YjucvezEXjgZE5uBF3/giphy.gif',
     //shiny7
     'https://media2.giphy.com/media/ouebvrKZa6xUOijrN9/giphy.gif',
-
+ 'https://i.imgur.com/HvKTosr.jpg',
 ];
 
 const informacion = [
-  'Este es un cigoto Sherkxican lo mejor es darle un nombre apropiado',
+
   'Este es un cigoto Sherkxican lo mejor es darle un nombre apropiado',
     'Las clasicas orejas ya estan casi formadas igual que su gusto musical',
     'Un feto sherkxican con gustos agrupecuarios formado completamente',
@@ -178,24 +178,21 @@ image = images[5];
      image = images[0];
     break;
 case 1:
- image = images[0];
-break;
-case 2:
  image = images[1];
 break;
-case 3:
+case 2:
  image = images[2];
 break;
-case 4:
+case 3:
  image = images[3];
 break;
-case 5:
+case 4:
  image = images[4];
 break;
-case 6:
+case 5:
 this.Actualizar();
 break;
-case 7:
+case 6:
 if(this.state.Shiny == 2)
 image = images[8];
 if(this.state.Shiny == 3)
@@ -229,9 +226,9 @@ break
                  <ScrollView key={i}>
                 <View  style={styles.card}>
 
-                 <Text style={{  fontFamily: 'Roboto', fontSize: 18,color:"#D24136" , fontWeight: 'bold',  textAlign: 'center'}}>Dias Existiendo: {item.Dias}</Text>
-                  <Text style={{  fontFamily: 'Roboto', fontSize: 15,textAlign: 'center' }} >Nombre: {item.Nombre}</Text>
-                    <Text style={{  fontFamily: 'Roboto', fontSize: 15,textAlign: 'center' }} >Creado el: {item.Hoy}</Text>
+                 <Text style={{   fontSize: 18,color:"#D24136" , fontWeight: 'bold',  textAlign: 'center'}}>Dias Existiendo: {item.Dias}</Text>
+                  <Text style={{   fontSize: 15,textAlign: 'center' }} >Nombre: {item.Nombre}</Text>
+                    <Text style={{   fontSize: 15,textAlign: 'center' }} >Creado el: {item.FechaInicio}</Text>
 
 
 
@@ -253,7 +250,7 @@ break
 const styles = StyleSheet.create ({
 
  card:{
-   backgroundColor:"white",
+   backgroundColor:"#B2DDA1",
    marginBottom:6,
    marginHorizontal:6,
    // width:340,

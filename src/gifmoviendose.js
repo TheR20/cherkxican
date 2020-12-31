@@ -114,7 +114,7 @@ export default class App extends Component {
                                   var month = new Date().getMonth() + 1;
                                   var year = new Date().getFullYear();
                                     var fechafinal = ''+date+'/'+month+'/'+year+'';
-              var consulta = 'UPDATE Users SET Dias=1,Nombre='+ cristo +',Hoy="' +fechafinal+ ',",FechaInicio="'+fechafinal+'" WHERE ID=1';
+              var consulta = 'UPDATE Users SET Dias=0,Nombre='+ cristo +',Hoy="' +fechafinal+ ',",FechaInicio="'+fechafinal+'" WHERE ID=1';
                       db.transaction(tx => {
                         tx.executeSql(consulta, [], (tx, results) => {
 
