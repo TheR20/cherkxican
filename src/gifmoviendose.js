@@ -109,7 +109,12 @@ export default class App extends Component {
                       //  var date = new Date().getDate();
 
 
-              var consulta = 'UPDATE Users SET Dias=1,Nombre='+ cristo +',Hoy="27/12/2020" WHERE ID=1';
+
+                      var date = new Date().getDate();
+                                  var month = new Date().getMonth() + 1;
+                                  var year = new Date().getFullYear();
+                                    var fechafinal = ''+date+'/'+month+'/'+year+'';
+              var consulta = 'UPDATE Users SET Dias=1,Nombre='+ cristo +',Hoy="' +fechafinal+ ',",FechaInicio="'+fechafinal+'" WHERE ID=1';
                       db.transaction(tx => {
                         tx.executeSql(consulta, [], (tx, results) => {
 
@@ -152,7 +157,7 @@ textAlign= 'center'
 
 />
 
-<Button round uppercase color="#E7567E"  size="large" style={{  fontFamily: 'sans-serif-medium',   textShadowColor: "blue", marginBottom:  30 }} onPress={() => this.guardaBaseDeDatos()}>QUE TE LO LLEVE LA CIGUEÑA</Button>
+<Button round uppercase color="#5EB855"  size="large" style={{  fontFamily: 'sans-serif-medium',   textShadowColor: "blue", marginBottom:  30 }} onPress={() => this.guardaBaseDeDatos()}>QUE TE LO LLEVE LA CIGUEÑA</Button>
 
 
 </View>

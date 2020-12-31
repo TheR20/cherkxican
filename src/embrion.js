@@ -16,14 +16,38 @@ import { Component } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import Moment from 'moment';
 import {   Button, Text ,Input, Block,Switch } from 'galio-framework'
-
+var image;
 let db;
 const images = [
+  'https://media2.giphy.com/media/SKj4mOmjyBg1pd6g5a/giphy.gif',
+    'https://media4.giphy.com/media/yth9xeltv0J3r5ofuo/giphy.gif',
+    'https://media4.giphy.com/media/DjbTipsPpP8SkpTtSQ/giphy.gif',
+    'https://media2.giphy.com/media/vY00zzt5a8ZYFLCSmU/giphy.gif',
+    'https://media1.giphy.com/media/Skq61whbGPTqrocCio/giphy.gif',
+    'https://media1.giphy.com/media/0nH27qCCpjsOfQhGtr/giphy.gif',
+    //shiny6
+    'https://media0.giphy.com/media/che4PY9f3OQbsvIEse/giphy.gif',
+    'https://media3.giphy.com/media/YjucvezEXjgZE5uBF3/giphy.gif',
+    //shiny7
+    'https://media2.giphy.com/media/ouebvrKZa6xUOijrN9/giphy.gif',
 
-    'https://img.mp.itc.cn/upload/20160828/5d17a7c020cc4c218323ca48f86b17e7_th.gif',
-      'https://i.imgur.com/O2C1O.jpg',
+];
+
+const informacion = [
+  'Este es un cigoto Sherkxican lo mejor es darle un nombre apropiado',
+  'Este es un cigoto Sherkxican lo mejor es darle un nombre apropiado',
+    'Las clasicas orejas ya estan casi formadas igual que su gusto musical',
+    'Un feto sherkxican con gustos agrupecuarios formado completamente',
+    'Un sherkxican infante, aun joven y con ganas de una liru sisa',
+    'Un Plebito con ganas de ser si-ca-rio y tener monton de pisto y morritas',
+    'El Sherkxican completo, su casita del infonavit, su bocina mamalona y monton de pisto',
+    //shiny6
+    'La increible version Shiny de un Sherkxican solo 1 de cada 100 nacen con el color esmeralda',
+    'Los Sherxican no suelen vivir tanto por lo cual el Sherxican viejo es una rara especie',
+    //shiny7
+    'Si un Sherkxican viejo es raro ahora uno Shiny es una pieza de museo que merece una captura para Instragram',
 
 ];
 const bannerSuperiorID = "ca-app-pub-8454341646863233/7727609337";
@@ -35,6 +59,8 @@ export default class App extends React.Component {
       cola:"",
       Dias:0,
       Hoy: "",
+      FechaInicio: "",
+      Shiny:0,
     }
     db = SQLite.openDatabase(
       {
@@ -47,7 +73,7 @@ export default class App extends React.Component {
     }
 
     success=()=>{
-      db.transaction(tx => {
+  db.transaction(tx => {
         tx.executeSql('SELECT * FROM Users where ID=1', [], (tx, results) => {  // sql query to get all table data and storing it in 'results' variable
           let data = results.rows.length;
 
@@ -58,11 +84,45 @@ export default class App extends React.Component {
                          //looping through each row in the table and storing it as object in the 'users' array
           }
 
-           this.setState({ userList:users, Dias: results.rows.item(0).Dias, Hoy:results.rows.item(0).Hoy});
+           this.setState({ userList:users, Dias: results.rows.item(0).Dias, Hoy:results.rows.item(0).Hoy,
+              FechaInicio:results.rows.item(0).FechaInicio,Shiny:results.rows.item(0).Shiny});
         //   console.log(users);        //setting the state(userlist) with users array which has all the table data
+        var aumentoDias = 0;
+        aumentoDias = this.state.Dias+1;
+        var date = new Date().getDate();
+                    var month = new Date().getMonth() + 1;
+                    var year = new Date().getFullYear();
+                      var fechafinal = ''+date+'/'+month+'/'+year+'';
+
+
+        var a = Moment(fechafinal, "DD-MM-YYYY");
+        var b = Moment(this.state.FechaInicio, "DD-MM-YYYY");
+
+        var result = a.diff(b, 'days');   // =1
+
+        console.log("Hola soy el resultado" + result);
+
+if(result !=0){
+  var consulta = 'UPDATE Users SET Dias='+result+',Hoy="'+fechafinal+'" WHERE ID=1';
+          db.transaction(tx => {
+            tx.executeSql(consulta, [], (tx, results) => {
+
+                // sql query to get all table data and storing it in 'results' variable
+                   //setting the state(userlist) with users array which has all the table data
+            });
+          });
+          // alert
+}
+
+
+
+
+        console.log(aumentoDias);
         });
       });
       // alert("ok")
+
+
     }
 
     fail=(error)=>{
@@ -71,47 +131,82 @@ export default class App extends React.Component {
 
 
 Actualizar = () => {
-  var aumentoDias = 0;
-  aumentoDias = this.state.Dias+1;
-  var date = new Date().getDate();
-              var month = new Date().getMonth() + 1;
-              var year = new Date().getFullYear();
-                var fechafinal = ''+date+'/'+month+'/'+year+'';
-                  console.log(this.state.Hoy);
-                  console.log(fechafinal);
-if(this.state.Hoy == fechafinal)
-  console.log("No es necesario");
-  else{
+  var RandomNumber = Math.floor(Math.random() * 100);
+  var numero = RandomNumber;
+    console.log(numero);
+    if(this.state.Shiny == 1){
+      if(numero == 50){
+        var consulta = 'UPDATE Users SET Shiny=3 WHERE ID=1';
+                db.transaction(tx => {
+                  tx.executeSql(consulta, [], (tx, results) => {
 
-    console.log(aumentoDias);
-    var consulta = 'UPDATE Users SET Dias='+aumentoDias+',Hoy="'+fechafinal+'" WHERE ID=1';
-            db.transaction(tx => {
-              tx.executeSql(consulta, [], (tx, results) => {
+                      // sql query to get all table data and storing it in 'results' variable
+                         //setting the state(userlist) with users array which has all the table data
+                  });
+                });
+                // alert
+      }
 
-                  // sql query to get all table data and storing it in 'results' variable
-                     //setting the state(userlist) with users array which has all the table data
+       image = images[6];
+    }
+    else{
+      var consulta = 'UPDATE Users SET Shiny=2 WHERE ID=1';
+              db.transaction(tx => {
+                tx.executeSql(consulta, [], (tx, results) => {
+
+                    // sql query to get all table data and storing it in 'results' variable
+                       //setting the state(userlist) with users array which has all the table data
+                });
               });
-            });
-            // alert
-        this.success.bind(this)
-        console.log("Actualizado");
-  }
-console.log(aumentoDias);
+       image = images[5];
+    }
+if(this.state.Shiny == 2)
+image = images[6];
+if(this.state.Shiny == 3)
+image = images[5];
+
 }
 
 
 
   render() {
-this.Actualizar();
+
   var numDia= this.state.Dias;
 
   switch(this.state.Dias){
+    case 0:
+     image = images[0];
+    break;
 case 1:
-var image = images[0];
+ image = images[0];
 break;
 case 2:
-var image = images[1];
-
+ image = images[1];
+break;
+case 3:
+ image = images[2];
+break;
+case 4:
+ image = images[3];
+break;
+case 5:
+ image = images[4];
+break;
+case 6:
+this.Actualizar();
+break;
+case 7:
+if(this.state.Shiny == 2)
+image = images[8];
+if(this.state.Shiny == 3)
+image = images[7];
+break;
+default:
+if(this.state.Shiny == 2)
+image = images[8];
+if(this.state.Shiny == 3)
+image = images[7];
+break
   }
 
 
@@ -126,7 +221,7 @@ var image = images[1];
 
 
 
-<Button round uppercase color="#E7567E"  size="large" style={{  marginHorizontal:24, fontFamily: 'sans-serif-medium',   textShadowColor: "blue", }} onPress={() => this.props.navigation.navigate('Home')}>MENU</Button>
+<Button round uppercase color="#5EB855"  size="large" style={{  marginHorizontal:24, fontFamily: 'sans-serif-medium',   textShadowColor: "blue", }} onPress={() => this.props.navigation.navigate('Home')}>MENU</Button>
          <ScrollView>
          {
             this.state.userList.map(function(item, i){
@@ -147,6 +242,7 @@ var image = images[1];
           }
           </ScrollView>
 
+<Text style={styles.topBox2}>{informacion[this.state.Dias]}</Text>
       </View>
       </ImageBackground>
 
@@ -171,6 +267,17 @@ const styles = StyleSheet.create ({
    elevation: 4,
      fontFamily: 'sans-serif-condensed',
  },
+ topBox2: {
+ marginBottom: 1,
+       textAlign: 'center', // <-- the magic
+         fontSize: 25,
+         color: "white",
+         backgroundColor: 'rgba(52, 52, 52, 0.8)',
+           fontFamily: 'monospace',
+           marginLeft:10,
+           marginRight:10,
+
+     },
  backgroundImage: {
 
    flex: 1,
