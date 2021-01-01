@@ -10,7 +10,7 @@ import {
   FlatList,
   TextInput,
   Image,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 import { Component } from 'react';
 
@@ -18,6 +18,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Moment from 'moment';
 import {   Button, Text ,Input, Block,Switch } from 'galio-framework'
+
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+
 var image;
 let db;
 const images = [
@@ -215,7 +220,7 @@ break
 
 <ImageBackground style={styles.backgroundImage} source={{uri:  image}}>
          <View style={{flex:1}}>
-
+<ScrollView>
 
 
 <Button round uppercase color="#5EB855"  size="large" style={{  marginHorizontal:24, fontFamily: 'sans-serif-medium',   textShadowColor: "blue", }} onPress={() => this.props.navigation.navigate('Home')}>MENU</Button>
@@ -226,7 +231,7 @@ break
                  <ScrollView key={i}>
                 <View  style={styles.card}>
 
-                 <Text style={{   fontSize: 18,color:"#D24136" , fontWeight: 'bold',  textAlign: 'center'}}>Dias Existiendo: {item.Dias}</Text>
+                 <Text style={{   fontSize: 18,color:"#D24136" , fontWeight: 'bold',  textAlign: 'center'}}>Dias Existiendo: {item.Dias+1}</Text>
                   <Text style={{   fontSize: 15,textAlign: 'center' }} >Nombre: {item.Nombre}</Text>
                     <Text style={{   fontSize: 15,textAlign: 'center' }} >Creado el: {item.FechaInicio}</Text>
 
@@ -240,6 +245,17 @@ break
           </ScrollView>
 
 <Text style={styles.topBox2}>{informacion[this.state.Dias]}</Text>
+
+<View style={{  marginTop: 50, }}>
+<BannerAd
+   unitId={adUnitId}
+   size={BannerAdSize.FULL_BANNER}
+   requestOptions={{
+     requestNonPersonalizedAdsOnly: true,
+   }}
+ />
+ </View>
+</ScrollView>
       </View>
       </ImageBackground>
 
@@ -265,7 +281,7 @@ const styles = StyleSheet.create ({
      fontFamily: 'sans-serif-condensed',
  },
  topBox2: {
- marginBottom: 1,
+ marginTop: 420 ,
        textAlign: 'center', // <-- the magic
          fontSize: 25,
          color: "white",

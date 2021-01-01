@@ -5,6 +5,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import gifmoviendose from './src/gifmoviendose';
 import embrion from './src/embrion';
 import {   Button, Text  } from 'galio-framework'
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+
 function HomeScreen({ navigation }) {
   return (
 
@@ -13,7 +17,7 @@ function HomeScreen({ navigation }) {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
         <Text style={styles.topBox2}>Una vida es una responsabilidad.</Text>
-
+<Text style={styles.topBox2}>(Algunas imagenes pueden tardar en cargar.)</Text>
 
 
         <Button round size="large"
@@ -23,7 +27,18 @@ function HomeScreen({ navigation }) {
          <Button round size="large"
             onPress={() => navigation.navigate('Pansita')}
           color="#32A027" style={{ marginTop: 50, }}>VER PANSITA</Button>
+
+            <View style={{  marginTop: 50, }}>
+          <BannerAd
+               unitId={adUnitId}
+               size={BannerAdSize.FULL_BANNER}
+               requestOptions={{
+                 requestNonPersonalizedAdsOnly: true,
+               }}
+             />
+             </View>
     </View>
+
       </ImageBackground>
   );
 }
