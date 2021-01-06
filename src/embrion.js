@@ -21,6 +21,8 @@ import {   Button, Text ,Input, Block,Switch } from 'galio-framework'
 
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
+
+const bannerSuperiorID = "ca-app-pub-8454341646863233/6218814449";
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 var image;
@@ -55,7 +57,7 @@ const informacion = [
     'Si un Sherkxican viejo es raro ahora uno Shiny es una pieza de museo que merece una captura para Instragram',
 
 ];
-const bannerSuperiorID = "ca-app-pub-8454341646863233/7727609337";
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -248,8 +250,8 @@ break
 
 <View style={{  marginTop: 50, }}>
 <BannerAd
-   unitId={adUnitId}
-   size={BannerAdSize.FULL_BANNER}
+   unitId={bannerSuperiorID}
+   size={BannerAdSize.ADAPTIVE_BANNER}
    requestOptions={{
      requestNonPersonalizedAdsOnly: true,
    }}

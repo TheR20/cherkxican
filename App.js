@@ -9,6 +9,7 @@ import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
+const bannerSuperiorID = "ca-app-pub-8454341646863233/8545788405";
 function HomeScreen({ navigation }) {
   return (
 
@@ -30,8 +31,8 @@ function HomeScreen({ navigation }) {
 
             <View style={{  marginTop: 50, }}>
           <BannerAd
-               unitId={adUnitId}
-               size={BannerAdSize.FULL_BANNER}
+               unitId={bannerSuperiorID}
+               size={BannerAdSize.ADAPTIVE_BANNER}
                requestOptions={{
                  requestNonPersonalizedAdsOnly: true,
                }}
