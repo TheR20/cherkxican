@@ -9,7 +9,7 @@ import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
-const bannerSuperiorID = "ca-app-pub-8454341646863233/8545788405";
+const bannerSuperiorID = "ca-app-pub-8454341646863233/6218814449";
 function HomeScreen({ navigation }) {
   return (
 

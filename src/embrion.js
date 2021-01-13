@@ -22,7 +22,7 @@ import {   Button, Text ,Input, Block,Switch } from 'galio-framework'
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 
-const bannerSuperiorID = "ca-app-pub-8454341646863233/6218814449";
+const bannerSuperiorID = "ca-app-pub-8454341646863233/8545788405";
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 var image;
@@ -155,6 +155,8 @@ Actualizar = () => {
       }
 
        image = images[6];
+       this.setState({  Dias: 6});
+
     }
     else{
       var consulta = 'UPDATE Users SET Shiny=2 WHERE ID=1';
@@ -167,9 +169,12 @@ Actualizar = () => {
               });
        image = images[5];
     }
-if(this.state.Shiny == 2)
-image = images[6];
 if(this.state.Shiny == 3)
+{
+  image = images[6];
+   this.setState({  Dias: 6});
+}
+if(this.state.Shiny == 2)
 image = images[5];
 
 }
@@ -200,16 +205,28 @@ case 5:
 this.Actualizar();
 break;
 case 6:
-if(this.state.Shiny == 2)
-image = images[8];
 if(this.state.Shiny == 3)
-image = images[7];
+{
+image = images[8];
+ this.setState({  Dias: 8});
+}
+if(this.state.Shiny == 2)
+{
+  image = images[7];
+this.setState({  Dias: 8});
+}
 break;
 default:
-if(this.state.Shiny == 2)
-image = images[8];
 if(this.state.Shiny == 3)
-image = images[7];
+{
+image = images[8];
+ this.setState({  Dias: 8});
+}
+if(this.state.Shiny == 2)
+{
+  image = images[7];
+this.setState({  Dias: 8});
+}
 break
   }
 
